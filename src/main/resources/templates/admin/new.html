@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create User</title>
+</head>
+<body>
+
+<h1 align="center">Create user</h1>
+
+<form th:action="@{/admin/save}" th:object="${user}"
+      th:method="POST" style="max-width: 600px; margin: 0 auto;">
+    <div class="m-3">
+        <div class="form-group row">
+            <label class="col-4 col-form-label">Username: </label>
+            <div class="col-8">
+                <input type="text" th:field="*{username}"/>
+            </div>
+            <div style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username error</div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-4 col-form-label">First name: </label>
+            <div class="col-8">
+                <input type="text" th:field="*{name}"/>
+            </div>
+            <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"> First name error</div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-4 col-form-label">Last name: </label>
+            <div class="col-8">
+                <input type="text" th:field="*{surname}"/>
+            </div>
+            <div style="color:red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Last name error</div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-4 col-form-label">Age: </label>
+            <div class="col-8">
+                <input type="text" th:field="*{age}"/>
+            </div>
+            <div style="color:red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age error</div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-4 col-form-label">E-mail: </label>
+            <div class="col-8">
+                <input type="email" th:field="*{email}"/>
+            </div>
+            <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">E-mail error</div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-4 col-form-label">Password: </label>
+            <div class="col-8">
+                <input type="password" th:field="*{password}"/>
+            </div>
+            <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-4 col-form-label">Roles: </label>
+            <div class="col-8">
+                <th:block th:each="role: ${listRoles}">
+                    <input type="checkbox" th:field="*{roles}"
+                           th:text="${role.name}" th:value="${role.id}" class="m-2" />
+                </th:block>
+            </div>
+        </div>
+
+        <div>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+    </div>
+</form>
+
+<form th:action="@{/logout}" th:method="POST">
+    <input type="submit" value="Logout" />
+</form>
+
+</body>
+</html>

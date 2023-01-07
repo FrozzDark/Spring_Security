@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+</head>
+<body>
+<h1 align="center">User's details</h1>
+
+<table border="0">
+    <tr>
+        <td>Id</td>
+        <td>:</td>
+        <td th:text="${user.getId()}">...</td>
+    </tr>
+    <tr>
+        <td>Name</td>
+        <td>:</td>
+        <td th:text="${user.getName()}">...</td>
+    </tr>
+    <tr>
+        <td>Surname</td>
+        <td>:</td>
+        <td th:text="${user.getSurname()}">...</td>
+    </tr>
+    <tr>
+        <td>Age</td>
+        <td>:</td>
+        <td th:text="${user.getAge()}">...</td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td>:</td>
+        <td th:text="${user.getEmail()}">...</td>
+    </tr>
+    <tr th:each ="role : ${user.getRoles()}">
+        <td>Role</td>
+        <td>:</td>
+        <td th:utext="${role.getName()}">...</td>
+    </tr>
+</table>
+
+<form th:action="@{/logout}" th:method="POST">
+    <input type="submit" value="Logout" />
+</form>
+
+</body>
+</html>
